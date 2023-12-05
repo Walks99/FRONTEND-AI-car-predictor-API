@@ -10,7 +10,7 @@ function App() {
   // Function to handle the image upload via HTTP POST request
   const uploadImageViaHttpPostRequest = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    console.log('Submit button clicked');
+    console.log("Submit button clicked");
 
     // Get the selected image file from the input element with id "image"
     const imageFile = document.getElementById("image").files[0];
@@ -20,7 +20,7 @@ function App() {
     if (imageFile) {
       // Create a FormData object to store the image file for sending in the request
       const formData = new FormData();
-      formData.append('image', imageFile);
+      formData.append("image", imageFile);
 
       console.log(formData);
 
@@ -39,12 +39,12 @@ function App() {
           // Parse the JSON response from the server
           const data = await response.json();
           // Update the success message state with the message from the server
-          setSuccessMessage(data.message); 
+          setSuccessMessage(JSON.stringify(data));
         } else if (response.status === 400) {
           // If there's a 400 Bad Request status, parse the JSON response
           const data = await response.json();
           // Update the success message state with the error message from the server
-          setSuccessMessage(data.message);
+          setSuccessMessage(data);
         } else {
           // Log an error if the response status is not in the success or 400 range
           console.error("Frontend:", response.statusText);
