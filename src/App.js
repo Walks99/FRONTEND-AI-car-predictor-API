@@ -1,14 +1,13 @@
 // Importing necessary dependencies and styles
-import "./App.css";
+import Styles from "./App.module.css";
+// import { Link } from "react-router-dom";
 import { useState } from "react";
 
 // App component function
 function App() {
   // State hook to manage the success message
 
-  const [successMessage, setSuccessMessage] = useState(null);
-
-
+  const [successMessage, setSuccessMessage] = useState([]);
 
   // Function to handle the image upload via HTTP POST request
   const uploadImageViaHttpPostRequest = async (e) => {
@@ -37,12 +36,13 @@ function App() {
           }
         );
 
-      //   Check if the server response is successful (status code in the range 200-299)
+        //   Check if the server response is successful (status code in the range 200-299)
         if (response.ok) {
           // Parse the JSON response from the server
           const data = await response.json();
           // Update the success message state with the message from the server
-          setSuccessMessage(JSON.stringify(data));
+          setSuccessMessage(data);
+          console.log("success message", successMessage);
         } else if (response.status === 400) {
           // If there's a 400 Bad Request status, parse the JSON response
           const data = await response.json();
@@ -56,14 +56,14 @@ function App() {
         // Log an error if there's an issue with the HTTP request
         console.error("Frontend Error:", error.message);
       }
-
-
     }
   };
 
   return (
-    <div>
+    // ------------------------- overviewContainer provides ability to position the helpRequestsContainer
+    <div className={Styles.OverviewContainer}>
       <h1>Upload an Image</h1>
+
       {/* Form to handle the image upload, with an onSubmit event triggering the uploadImageViaHttpPostRequest function */}
       <form onSubmit={uploadImageViaHttpPostRequest}>
         {/* Label for the file input */}
@@ -73,34 +73,34 @@ function App() {
         {/* Button to submit the form and trigger the image upload */}
         <button type="submit">Upload</button>
       </form>
-      {/* Display the success message if it exists */}
 
-      {successMessage && <p>{successMessage}</p>}
-
-    </div>
-
-    // --------
-        // ------------------------- overviewContainer provides ability to position the helpRequestsContainer
-        <div className={Styles.OverviewContainer}>
-        {/* ------------------------ helpRequestsContainer holds all content displayed within the overContainer */}
-        <div className={Styles.StudentProfilesContainer}>
-          <div className={Styles.container}>
-            {users &&
-              users.map(function (user) {
-                return (
-                  <NavLink className={Styles.navLink} to={`/student/${user.student_id}`} key={user.student_id}>
-                    <div key={user.student_id} className={Styles.card}>
-                    <img src={user.profile_pic} alt="students" className={Styles.studentImage} />
-                    <p>{user.name.toUpperCase()}</p>
-                  </div>
-                  </NavLink>
-                );
-              })}
-          </div>
+      {/* ------------------------ helpRequestsContainer holds all content displayed within the overContainer */}
+      <div className={Styles.StudentProfilesContainer}>
+        <div className={Styles.container}>
+          {successMessage &&
+            successMessage.map(function (user) {
+              return (
+                <div className={Styles.navLink}>
+                  <div key={user._id} className={Styles.card}>
+                  <img
+                    src={user.image}
+                    alt="cars"
+                    className={Styles.studentImage}
+                  />
+                  <p>Make: {user.make.toUpperCase()}</p>
+                  <p>Model: {user.model.toUpperCase()}</p>
+                  <p>Body Style: {user.bodyStyle.toUpperCase()}</p>
+                  <p>Year: {user.year}</p>
+                  <p>Price {user.price}</p>
+                </div>
+                </div>
+              );
+            })}
         </div>
-        {/* ^^^^^^^^^^^^^^^ END of helpRequestsContainer */}
       </div>
-      // ^^^^^^^^^^^^^^ END of overviewContainer
+      {/* ^^^^^^^^^^^^^^^ END of helpRequestsContainer */}
+    </div>
+    // ^^^^^^^^^^^^^^ END of overviewContainer
     // ^^^^^^^
   );
 }
