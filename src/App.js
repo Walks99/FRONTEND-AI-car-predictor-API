@@ -62,12 +62,13 @@ function App() {
   return (
     // ------------------------- overviewContainer provides ability to position the helpRequestsContainer
     <div className={Styles.OverviewContainer}>
-      <h1>Upload an Image</h1>
+      <img src={process.env.PUBLIC_URL + '/turners-logo.png'} alt="turners logo" />
+      <h1>Find something similar</h1>
 
       {/* Form to handle the image upload, with an onSubmit event triggering the uploadImageViaHttpPostRequest function */}
       <form onSubmit={uploadImageViaHttpPostRequest}>
         {/* Label for the file input */}
-        <label htmlFor="image">Choose an image: </label>
+        <label htmlFor="image">Upload an image: </label>
         {/* Input element allowing the selection of image files, restricted to image types */}
         <input type="file" id="image" name="image" accept="image/*" />
         {/* Button to submit the form and trigger the image upload */}
