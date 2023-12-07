@@ -5,7 +5,10 @@ import { useState } from "react";
 // App component function
 function App() {
   // State hook to manage the success message
+
   const [successMessage, setSuccessMessage] = useState(null);
+
+
 
   // Function to handle the image upload via HTTP POST request
   const uploadImageViaHttpPostRequest = async (e) => {
@@ -34,7 +37,7 @@ function App() {
           }
         );
 
-        // Check if the server response is successful (status code in the range 200-299)
+      //   Check if the server response is successful (status code in the range 200-299)
         if (response.ok) {
           // Parse the JSON response from the server
           const data = await response.json();
@@ -53,10 +56,11 @@ function App() {
         // Log an error if there's an issue with the HTTP request
         console.error("Frontend Error:", error.message);
       }
+
+
     }
   };
 
-  // Render the component JSX
   return (
     <div>
       <h1>Upload an Image</h1>
@@ -70,7 +74,9 @@ function App() {
         <button type="submit">Upload</button>
       </form>
       {/* Display the success message if it exists */}
+
       {successMessage && <p>{successMessage}</p>}
+
     </div>
   );
 }
