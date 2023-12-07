@@ -75,23 +75,23 @@ function App() {
       </form>
 
       {/* ------------------------ helpRequestsContainer holds all content displayed within the overContainer */}
-      <div className={Styles.StudentProfilesContainer}>
+      <div className={Styles.similarCarsContainer}>
         <div className={Styles.container}>
           {successMessage &&
-            successMessage.map(function (user) {
+            successMessage.map(function (car) {
               return (
-                <div className={Styles.navLink}>
-                  <div key={user._id} className={Styles.card}>
+                <div className={Styles.carsContainer} key={car._id}>
+                  <div key={car._id} className={Styles.card}>
                   <img
-                    src={user.image}
+                    src={car.image}
                     alt="cars"
-                    className={Styles.studentImage}
+                    className={Styles.carImage}
                   />
-                  <p>Make: {user.make.toUpperCase()}</p>
-                  <p>Model: {user.model.toUpperCase()}</p>
-                  <p>Body Style: {user.bodyStyle.toUpperCase()}</p>
-                  <p>Year: {user.year}</p>
-                  <p>Price {user.price}</p>
+                  <p>Make: {car.make.toUpperCase()}</p>
+                  <p>Model: {car.model.toUpperCase()}</p>
+                  <p>Body Style: {car.bodyStyle.toUpperCase()}</p>
+                  <p>Year: {car.year}</p>
+                  <p>Price {car.price}</p>
                 </div>
                 </div>
               );

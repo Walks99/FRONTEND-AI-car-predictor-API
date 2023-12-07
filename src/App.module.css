@@ -11,7 +11,7 @@
   }
   /* ^^^^^^^^^^^^^^^^^^^^^ */
   /* -------  Help requests container */
-  .StudentProfilesContainer {
+  .similarCarsContainer {
     /* background-color: #d9f2fd;   */
     /* border-radius: 30px; */
     width: 95%;
@@ -36,7 +36,7 @@
   }
   /* ^^^^^^^^^^^^^^^^^^^^^ */
   /* ------ Student card */
-  .navLink {
+  .carsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,12 +44,12 @@
     /* height: auto; */
   }
   
-  .navLink:hover {
+  .carsContainer:hover {
     transform: scale(1.07);
     transition: transform 0.4s ease;
   }
   
-  .studentImage {
+  .carImage {
     width: 80%;
     height: auto;
   }
